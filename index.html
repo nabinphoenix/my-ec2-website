@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Current Date & Time</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #ffffff;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 16px;
+      padding: 24px 30px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .time {
+      font-size: 32px;
+      font-family: "Courier New", monospace;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .date {
+      font-size: 14px;
+      color: #cbd5f5;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      background: #6366f1;
+      color: white;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #4f46e5;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="title">Current Date & Time</div>
+    <div class="time" id="time">--:--:--</div>
+    <div class="date" id="date">Loading...</div>
+    <button onclick="refreshDateTime()">Refresh</button>
+  </div>
+
+  <script>
+    function refreshDateTime() {
+      const now = new Date();
+
+      const time = now.toLocaleTimeString();
+      const date = now.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+
+      document.getElementById("time").textContent = time;
+      document.getElementById("date").textContent = date;
+    }
+
+    // Load once when page opens
+    refreshDateTime();
+  </script>
+
+</body>
+</html>
